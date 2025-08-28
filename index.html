@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML & CSS Examples (10 Tasks)</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding:20px; line-height:1.6; }
+    h2 { margin-top:40px; border-bottom:2px solid #ddd; padding-bottom:5px; }
+
+    /* 1. Styled checkbox */
+    .checkbox-container { display:flex; align-items:center; cursor:pointer; }
+    .checkbox-container input { display:none; }
+    .checkmark {
+      width:25px; height:25px;
+      border:2px solid #333; border-radius:5px;
+      margin-right:8px; position:relative;
+      transition:all 0.3s ease;
+    }
+    .checkbox-container input:checked + .checkmark {
+      background:#4caf50; border-color:#4caf50; transform:scale(1.1);
+    }
+    .checkmark::after {
+      content:""; position:absolute; left:6px; top:2px;
+      width:6px; height:12px;
+      border:solid white; border-width:0 2px 2px 0;
+      transform:rotate(45deg); opacity:0;
+      transition:opacity 0.3s ease;
+    }
+    .checkbox-container input:checked + .checkmark::after { opacity:1; }
+
+    /* 2. Text overlay */
+    .overlay-container { position:relative; display:inline-block; }
+    .overlay-container img { width:300px; display:block; }
+    .overlay-text {
+      position:absolute; bottom:0; width:100%;
+      background:rgba(0,0,0,0.6); color:#fff;
+      text-align:center; padding:10px;
+    }
+
+    /* 3. Floating headings */
+    .floating-list { max-height:200px; overflow-y:auto; border:1px solid #ccc; }
+    .floating-list h3 {
+      position:sticky; top:0; background:#eee;
+      margin:0; padding:5px;
+    }
+
+    /* 4. Nav hover/focus */
+    nav a {
+      margin:0 10px; text-decoration:none; color:#333;
+      padding:5px 10px; display:inline-block;
+      transition:transform 0.3s, background 0.3s;
+    }
+    nav a:hover, nav a:focus {
+      background:#2196f3; color:#fff;
+      transform:scale(1.1) rotate(-3deg);
+    }
+
+    /* 5. Scroll snap */
+    .scroll-snap {
+      display:flex; overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      border:2px solid #ccc;
+    }
+    .scroll-snap div {
+      flex:0 0 100%; scroll-snap-align:start;
+      padding:50px; font-size:24px; text-align:center;
+    }
+
+    /* 6. Form focus */
+    form { border:2px solid #ccc; padding:10px; border-radius:5px; }
+    form:focus-within { border-color:#2196f3; background:#f0f8ff; }
+
+    /* 7. Fullscreen */
+    .fullscreen-box {
+      width:200px; height:150px; background:coral; color:white;
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
+    }
+    .fullscreen-box:fullscreen { background:green; font-size:30px; }
+
+    /* 8. Popout menu */
+    .menu { position:relative; display:inline-block; }
+    .menu button { padding:10px; cursor:pointer; }
+    .menu-content {
+      display:none; position:absolute; top:100%; left:0;
+      background:#fff; border:1px solid #ccc; min-width:150px;
+    }
+    .menu-content a {
+      display:block; padding:8px; text-decoration:none; color:#333;
+    }
+    .menu:hover .menu-content,
+    .menu:focus-within .menu-content { display:block; }
+
+    /* 9. Fade siblings */
+    .fade-siblings { display:flex; gap:10px; }
+    .fade-siblings div {
+      flex:1; padding:20px; background:#ddd; text-align:center;
+      transition:opacity 0.3s;
+    }
+    .fade-siblings:hover div { opacity:0.3; }
+    .fade-siblings div:hover { opacity:1 !important; }
+
+    /* 10. Polka dots */
+    .polka {
+      width:300px; height:150px; background:#f5f5f5;
+      background-image: radial-gradient(#333 5%, transparent 6%);
+      background-size:30px 30px;
+    }
+  </style>
+</head>
+<body>
+  <h1>HTML & CSS 10 Examples</h1>
+
+  <h2>1. Checkbox</h2>
+  <label class="checkbox-container">
+    <input type="checkbox"><span class="checkmark"></span> Click me
+  </label>
+
+  <h2>2. Text Overlay</h2>
+  <div class="overlay-container">
+    <img src="https://via.placeholder.com/300x200">
+    <div class="overlay-text">Overlay Text</div>
+  </div>
+
+  <h2>3. Floating Headings</h2>
+  <div class="floating-list">
+    <h3>Fruits</h3><ul><li>Apple</li><li>Banana</li><li>Orange</li><li>Grapes</li></ul>
+    <h3>Vegetables</h3><ul><li>Carrot</li><li>Potato</li><li>Onion</li><li>Tomato</li></ul>
+    <h3>Drinks</h3><ul><li>Water</li><li>Juice</li><li>Soda</li></ul>
+  </div>
+
+  <h2>4. Nav Hover/Focus</h2>
+  <nav>
+    <a href="#">Home</a><a href="#">About</a><a href="#">Services</a><a href="#">Contact</a>
+  </nav>
+
+  <h2>5. Scroll Snap</h2>
+  <div class="scroll-snap">
+    <div style="background:#f99;">Page 1</div>
+    <div style="background:#9f9;">Page 2</div>
+    <div style="background:#99f;">Page 3</div>
+  </div>
+
+  <h2>6. Form Focus</h2>
+  <form>
+    <input type="text" placeholder="Name"><br><br>
+    <input type="email" placeholder="Email"><br><br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <h2>7. Fullscreen Mode</h2>
+  <div class="fullscreen-box" id="fsBox">Click me</div>
+  <script>
+    document.getElementById('fsBox').onclick = function() {
+      if (this.requestFullscreen) { this.requestFullscreen(); }
+    }
+  </script>
+
+  <h2>8. Popout Menu</h2>
+  <div class="menu">
+    <button>Menu</button>
+    <div class="menu-content">
+      <a href="#">Profile</a><a href="#">Settings</a><a href="#">Logout</a>
+    </div>
+  </div>
+
+  <h2>9. Fade Out Siblings</h2>
+  <div class="fade-siblings">
+    <div>Item 1</div><div>Item 2</div><div>Item 3</div>
+  </div>
+
+  <h2>10. Polka Dot Background</h2>
+  <div class="polka"></div>
+</body>
+</html>
